@@ -11,7 +11,7 @@ db = mysql.connector.connect(
 
 mycursor = db.cursor()
 
-mycursor = db.execute("CREATE TABLE IF NOT EXISTS Ingredient(ingredientID INTEGER NOT NULL PRIMARY KEY, product_name VARCHAR(255), generic_name VARCHAR(255), quantity VARCHAR(255), serving_size VARCHAR(255), energy INTEGER, energy_from_fat INTEGER, fat DECIMAL, saturated_fat DECIMAL, trans_fat DECIMAL, cholesterol DECIMAL, carbohydrates DECIMAL, sugars DECIMAL, fiber DECIMAL, proteins DECIMAL, sodium DECIMAL, vitamin_a DECIMAL, vitamin_d DECIMAL, vitamin_c DECIMAL, calcium DECIMAL, iron DECIMAL);");
+mycursor.execute("CREATE TABLE IF NOT EXISTS Ingred(ingredientID INTEGER NOT NULL PRIMARY KEY, product_name VARCHAR(255), generic_name VARCHAR(255), quantity VARCHAR(255), serving_size VARCHAR(255), energy INTEGER, energy_from_fat INTEGER, fat DECIMAL, saturated_fat DECIMAL, trans_fat DECIMAL, cholesterol DECIMAL, carbohydrates DECIMAL, sugars DECIMAL, fiber DECIMAL, proteins DECIMAL, sodium DECIMAL, vitamin_a DECIMAL, vitamin_d DECIMAL, vitamin_c DECIMAL, calcium DECIMAL, iron DECIMAL);");
 
 with open('./openfoodfactsData/ingredients.json') as file:
     ings = json.load(file)
@@ -38,7 +38,7 @@ with open('./openfoodfactsData/ingredients.json') as file:
         calcium = ing['calcium'];
         iron = ing['iron'];
 
-        sql="INSERT INTO Ingredient (ingredientID, product_name, generic_name, quantity, serving_size, energy, energy_from_fat, fat, saturated_fat, trans_fat, cholesterol, carbohydrates, sugars, fiber, proteins, sodium, vitamin_a, vitamin_d, vitamin_c, calcium, iron) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s); ";
+        sql="INSERT INTO Ingred (ingredientID, product_name, generic_name, quantity, serving_size, energy, energy_from_fat, fat, saturated_fat, trans_fat, cholesterol, carbohydrates, sugars, fiber, proteins, sodium, vitamin_a, vitamin_d, vitamin_c, calcium, iron) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s); ";
 
         val=(ingredientID, product_name, generic_name, quantity, serving_size, energy, energy_from_fat, fat, saturated_fat, trans_fat, cholesterol, carbohydrates, sugars, fiber, proteins, sodium, vitamin_a, vitamin_d, vitamin_c, calcium, iron)
 
