@@ -10,3 +10,5 @@ Then I took this and did alot of post-processing on it in script_from_net.py
 
 Then I made a matching file where I realized that matching would take way too long: matching_ingredients.py
 
+Connect to Database:
+mysql -h nutritionandrecipes.ce7wp32dwfvn.us-east-2.rds.amazonaws.com -P 3306 -u cis550group -p password
