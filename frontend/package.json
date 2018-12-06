@@ -1,0 +1,13 @@
+{
+  "name": "finalprojfrontend",
+  "version": "0.0.0",
+  "description": "550 project",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.3",
+    "express": "^4.16.3",
+    "morgan": "^1.9.1",
+    "mysql": "^2.14.1"
+  }
+}
