@@ -1,0 +1,48 @@
+<!-- <!DOCTYPE html>
+<html ng-app="angularjsNodejsTutorial">
+    <head>
+        <title>Friends</title>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.2/angular.js"></script>
+        <script src="javascripts/app.js" type="text/javascript"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    </head>
+    <body data-spy="scroll" data-target=".scrollspy">
+        <header></header>
+        <nav role="navigation" class="navbar navbar-static-top navbar-default">
+            <div class="container">
+                <div class="navbar-header"><button type="button" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar" class="navbar-toggle collapsed"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a href="#" class="navbar-brand">HW2 - CIS550</a></div>
+                <div id="navbar" class="collapse navbar-collapse">
+                    <li><a href="/">Your Work</a></li>
+                    <li><a href="/insert">Insert a new record</a></li>
+                    <li class="active"><a href="/friends">Find Friends</a></li>
+                    <li><a href="/family">Find Family</a></li>
+                    <li><a href="/reference">Reference</a></li>
+
+                </div>
+            </div>
+        </nav>
+        <div class="container">
+            <div class="jumbotron">
+         <div ng-controller="friendController">
+        <p><span aria-hidden="true" class="glyphicon text-primary glyphicon-search"></span> Please enter a person login:
+            <input name="email" ng-model="email" value="">
+            <button type="button" ng-click="FindFriends()" class="button">Find Friends</button>
+        </p>
+        <table border="0" cellpadding="10" cellspacing="1" width="500" align="center"> 
+            <tr> 
+            <td> Login </td>
+            <td> Name </td>
+            <td> Sex </td>
+            <td> RelationshipStatus </td>
+            <td> Birthyear </td>
+            <tr ng-repeat="x in data"> 
+            <td> {{x.login}} </td>
+            <td> {{x.name}} </td>
+            <td> {{x.sex}} </td>
+            <td> {{x.relationshipStatus}} </td>
+            <td> {{x.birthyear}} </td>
+            </tr>
+        </table>
+        </div>
+    </body>
+</html> -->
