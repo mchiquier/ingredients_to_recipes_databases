@@ -38,7 +38,7 @@ with open('./openfoodfactsData/ingredients.json') as file:
         calcium = ing['calcium'];
         iron = ing['iron'];
 
-        sql="INSERT INTO Ingred (ingredientID, product_name, generic_name, quantity, serving_size, energy, energy_from_fat, fat, saturated_fat, trans_fat, cholesterol, carbohydrates, sugars, fiber, proteins, sodium, vitamin_a, vitamin_d, vitamin_c, calcium, iron) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s); ";
+        sql="INSERT IGNORE INTO Ingred (ingredientID, product_name, generic_name, quantity, serving_size, energy, energy_from_fat, fat, saturated_fat, trans_fat, cholesterol, carbohydrates, sugars, fiber, proteins, sodium, vitamin_a, vitamin_d, vitamin_c, calcium, iron) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s); ";
 
         val=(ingredientID, product_name, generic_name, quantity, serving_size, energy, energy_from_fat, fat, saturated_fat, trans_fat, cholesterol, carbohydrates, sugars, fiber, proteins, sodium, vitamin_a, vitamin_d, vitamin_c, calcium, iron)
 
