@@ -12,3 +12,6 @@ Then I made a matching file where I realized that matching would take way too lo
 
 Connect to Database:
 mysql -h nutritionandrecipes.ce7wp32dwfvn.us-east-2.rds.amazonaws.com -P 3306 -u cis550group -p password
+
+Nutrient Database:
+https://catalog.data.gov/dataset/supertracker-source-code-and-foods-database
