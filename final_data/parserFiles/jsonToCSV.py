@@ -41,12 +41,12 @@ with open("../outputData/ingredients.csv", 'w') as my_csv:
     csvWriter = csv.writer(my_csv, delimiter=',')
     csvWriter.writerow(ingArr)
     for el in ingredients:
-        csvWriter.writerow([el[ingArr[0]], el[ingArr[1]], el[ingArr[2]], el[ingArr[3]]])
+        ingreds.writerow([el[ingArr[0]], el[ingArr[1]], el[ingArr[2]], el[ingArr[3]]])
 
 
 with open("../outputData/recipes.csv", 'w') as my_csv:
     csvWriter = csv.writer(my_csv, delimiter=',')
     csvWriter.writerow(recArr)
     for el in recipes:
-        csvWriter.writerow([el[recArr[0]], el[recArr[1]], el[recArr[2]], el[recArr[3]],
+        recs.writerow([el[recArr[0]], el[recArr[1]], el[recArr[2]], el[recArr[3]],
                       el[recArr[4]], el[recArr[5]]])

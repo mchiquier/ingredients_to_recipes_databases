@@ -7,7 +7,7 @@ import collections
 headerT1 = ["nid", "name", "protein (g)", "fat (g)", "energy (kcal)", "sugar (g)", "calcium (g)", "potassium (g)", "cholesterol (g)", "carbohydrates (g)", "fiber (g)", "sodium (g)", "iron (g)"]
 dataT1 = list()
 
-with open('./rawData/nutrients.csv', newline='') as csvfile:
+with open('../rawData/nutrients.csv', newline='') as csvfile:
     reader = csv.DictReader(csvfile)
     id = 0
     for row in reader:
@@ -28,5 +28,5 @@ with open('./rawData/nutrients.csv', newline='') as csvfile:
             dataT1.append(collections.OrderedDict(zip(headerT1, arr)))
             id += 1
 
-with open("./outputData/nutrients.json", 'w') as file:
+with open("../outputData/nutrients.json", 'w') as file:
     json.dump(dataT1, file, indent=2)
