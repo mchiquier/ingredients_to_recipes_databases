@@ -18,11 +18,17 @@ with jsonlines.open("output.ndjson") as reader:
         current_token = ''
         if ingredient_recipe in ingredient_to_data_ingredient:
             continue
-        with open('csv_data/data.csv', mode='r') as csv_file:
+        with open('final_data/rawData/nutrients.csv', mode='r') as csv_file:
             csv_reader = csv.DictReader(csv_file)
             line_count = 0
             for row in csv_reader:
-                ingredient_data = row['product_name']
+                ingredient_data = row['foodname']
+                if '(' in ingredient_data:
+                    first = ingredient_data.split('(')
+                    ingredient_data= first[0]
+                if ',' in ingredient_data:
+                    second = ingredient_data.split(',')
+                    ingredient_data = second[0]
                 #print("ingredient_data", ingredient_data)
                 similarity = Levenshtein.ratio(ingredient_recipe,ingredient_data)
                 #print("similarity", similarity)
