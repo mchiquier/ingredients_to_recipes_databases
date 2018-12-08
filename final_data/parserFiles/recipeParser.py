@@ -17,18 +17,24 @@ for item in data:
     rating = item["rating"] if "rating" in item else -1.0
     title = item['title'] if "title" in item else ""
     ingreds = item['ingredients'] if "ingredients" in item else []
+    inarr = ""
+    for i in ingreds:
+        inarr += i + "$#"
     directions = item['directions'] if "directions" in item else []
+    dirarr = ""
+    for i in directions:
+        dirarr += i + "$#"
     calories = item['calories'] if 'calories' in item else -1.0
     description = item['desc'] if 'desc' in item else ""
     for ingred in ingreds:
-        temp = [rid, idCount, title, ingred]
+        temp = [rid, idCount, title, inarr]
         dataT2.append(collections.OrderedDict(zip(headerT2, temp)))
         rid += 1
-    arr = [idCount,title, rating, directions, calories, description]
+    arr = [idCount,title, rating, dirarr, calories, description]
     dataT1.append(collections.OrderedDict(zip(headerT1, arr)))
     idCount += 1
 
-
+#
 with open("./outputData/recipes.json", 'w') as file:
     json.dump(dataT1, file, indent=2)
 
