@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html ng-app="angularjsNodejsTutorial">
     <head>
-        <title>Please enter a person login</title>
+        <title>Recipe & Nutrition Database</title>
         <script src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.2/angular.js"></script>
         <script src="js/app.js" type="text/javascript"></script>
+        <link rel="stylesheet"; href="https://unpkg.com/ng-table@2.0.2/bundles/ng-table.min.css">
+        <script src="https://unpkg.com/ng-table@2.0.2/bundles/ng-table.min.js"></script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
     </head>
     <body data-spy="scroll" data-target=".scrollspy">
@@ -19,14 +21,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
-                    </button><a href="#" class="navbar-brand">HW2 - CIS550</a></div>
-                <div id="navbar" class="collapse navbar-collapse">
-                    <li class="active"><a href="/">Your Work</a></li>
-                    <li><a href="/insert">Insert a new record</a></li>
-                    <li><a href="/friends">Find Friends</a></li>
-                    <li><a href="/family">Find Family</a></li>
-                    <li><a href="/reference">Reference</a></li>
-                </div>
+                    </button><a href="#" class="navbar-brand">Recipe & Nutrition Database</a></div>
             </div>
         </nav>
          <div class="container">
@@ -34,23 +29,24 @@
             <div class="jumbotron">
                 <div ng-controller="myController">
                     <p>
-                        <span aria-hidden="true" class="glyphicon text-primary glyphicon-search"></span> Please enter a person login:
-                        <input name="email" ng-model="email" value="">
-                        <button type="button" ng-click="Submit()" class="button">Show Persons</button>
+                        <span aria-hidden="true" class="glyphicon text-primary glyphicon-search"></span> Search for recipes:
+                        <input name="word" ng-model="word" value="">
+                        <button type="button" ng-click="Submit()" class="button">Search for Matching Recipes</button>
+                        <button type="button" ng-click="Prev()" class="button">Previous</button>
+                        <button type="button" ng-click="Next()" class="button">Next</button>
+
                     </p>
-                    <table border="0" cellpadding="10" cellspacing="1" width="500" align="center"> 
+                    <table border="0" ng-init="allRecipes()" ng-table="vm.tableParams" class="table" show-filter="true" cellpadding="10" cellspacing="1" width="500" align="center"> 
                         <tr> 
-                        <td> Login </td>
                         <td> Name </td>
-                        <td> Sex </td>
-                        <td> RelationshipStatus </td>
-                        <td> Birthyear </td>
+                        <td> Rating </td>
+                        <td> Total Calories </td>
+                        <td> Description </td>
                         <tr ng-repeat="x in data"> 
-                        <td> {{x.login}} </td>
-                        <td> {{x.name}} </td>
-                        <td> {{x.sex}} </td>
-                        <td> {{x.relationshipStatus}} </td>
-                        <td> {{x.birthyear}} </td>
+                        <td><a ng-href="/recipe/{{x.rid}}">{{x.title}}</a></td>
+                        <td> {{x.rating}} </td>
+                        <td> {{x.calories}} </td>
+                        <td> {{x.description}} </td>
                         </tr>
                     </table>
                 </div>

@@ -8,21 +8,43 @@ var connection = mysql.createConnection({
     host     : 'nutritionandrecipes.ce7wp32dwfvn.us-east-2.rds.amazonaws.com',
     user     : 'cis550group',
     password : 'password',
-    database: "nutrition_and_recipes",
+    database: "cis550group",
     port : '3306'
 });
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  var query = 'SELECT * FROM Recipe WHERE rating >= 5';
-  
+  res.sendFile(path.join(__dirname, '../', 'views', 'index.html'));
+});
+
+router.get('/recipe/:recipe', function(req, res, next) {
+  res.sendFile(path.join(__dirname, '../', 'views', 'recipe.html'));
+});
+
+router.get('/fillhome/:start', function(req, res, next) {
+  var start = req.params.start
+  var query = 'SELECT * FROM Recipe LIMIT ' + start + "," + 15;
   connection.query(query, function(err, rows, fields) {
     if (err) console.log(err);
     else {
       res.json(rows);
     }  
   });
-  // res.sendFile(path.join(__dirname, '../', 'views', 'index.html'));
+})
+
+router.get('/filterword/:word', function(req,res) {
+  
+  var query = 'SELECT * FROM Recipe WHERE title LIKE \'%' + req.params.word + '%\' LIMIT 0' + "," + 15;
+  
+  connection.query(query, function(err, rows, fields) {
+    if (err) {
+      console.log(err)
+      
+    }
+    else {
+      res.json(rows);
+    }  
+  });
 });
 
 // router.get('/reference', function(req, res, next) {
@@ -62,17 +84,7 @@ router.get('/', function(req, res, next) {
 //   })
 // });
 
-// router.get('/data/:email', function(req,res) {
-//   var query = req.params.email === 'undefined' || req.params.email === '' ? 
-//   'SELECT * FROM Person' : 'SELECT * FROM Person P WHERE P.login = \'' + req.params.email + '\'';
-  
-//   connection.query(query, function(err, rows, fields) {
-//     if (err) console.log(err);
-//     else {
-//       res.json(rows);
-//     }  
-//   });
-// });
+
 
 // router.get('/friends/:email', function(req,res) {
 //   if (req.params.email) {

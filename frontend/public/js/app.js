@@ -1,32 +1,77 @@
-var app = angular.module('angularjsNodejsTutorial',[]);
-app.controller('myController', function($scope, $http) {
-    $scope.message="";
-    $scope.Submit = function() {
-        var request = $scope.email === '' ? $http.get('/data/undefined') : $http.get('/data/'+$scope.email);
-        request.success(function(data) {
-            $scope.data = data;
-            $scope.email = ''
-        });
-        request.error(function(data){
-            console.log('err');
-        });
+var app = angular.module('angularjsNodejsTutorial',['ngTable']);
 
+app.controller('myController', function($scope, $http, $window, $location) {
+    var index = 0;
+    $scope.Submit = function() {
+        if ($scope.word === undefined || $scope.word.length == 0) {
+            $window.location.reload()
+        } else {
+            var request = $http.get('/filterword/'+$scope.word);
+            $scope.word = ""
+            request.success(function(data) {
+                $scope.data = data;
+            });
+            request.error(function(data){
+                console.log(data);
+            });
+        }
+       
     }; 
+    $scope.Next = function() {
+        if (index < 18375) {
+            index += 15
+            var request = $http.get('/fillhome/' + index)
+            request.success(function(data) {
+                $scope.data = data
+            })
+            request.error(function(data) {
+                $scope.data = []
+            })
+        } 
+    }
+
+    $scope.Prev = function() {
+        if (index > 0) {
+            index -= 15
+            var request = $http.get('/fillhome/' + index)
+            request.success(function(data) {
+                $scope.data = data
+            })
+            request.error(function(data) {
+                $scope.data = []
+            })
+        }
+    }
+
+    // $scope.recipeDetails = function(rec) {
+        
+    //     $window.location.href = '/recipe/' + rec.rid;
+    //     var request = $http.get('/recipe/:' + rec.rid)
+    //     // request.success(function(data) {
+    //         console.log(rec)
+    //     // })
+    // }
+
+    $scope.allRecipes = function() {
+        var request = $http.get('/fillhome/' + index)
+        request.success(function(data) {
+            $scope.data = data
+        })
+        request.error(function(data) {
+            $scope.data = []
+        })
+    }
+    $scope.tableParams = ({}, { dataset: $scope.data});
 });
 
-// app.controller('friendController', function($scope, $http) {
-//     $scope.message="";
-//     $scope.FindFriends = function() {
-//     var request = $http.get('/friends/'+$scope.email);
-//     request.success(function(data) {
-//         $scope.data = data;
-//     });
-//     request.error(function(data){
-//         console.log('err');
-//     });
-
-// }; 
-// });
+app.controller('recipe', function($scope, $http, $routeParams) {
+    var one = $routeParams.recipe
+    $scope.test = function() {
+        console.log("happening")
+    }
+    console.log(one)
+    
+});
 
 // app.controller('familyController', function($scope, $http) {
 //     $scope.message="";
