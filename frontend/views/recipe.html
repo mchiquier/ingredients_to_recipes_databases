@@ -21,17 +21,30 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
-                    </button><a href="#" class="navbar-brand">Recipe & Nutrition Database</a></div>
+                    </button><a href="/" class="navbar-brand">Recipe & Nutrition Database</a></div>
             </div>
         </nav>
          <div class="container">
             <!-- Main component for a primary marketing message or call to action-->
             <div class="jumbotron">
                 <div ng-controller="recipeController" ng-init="recipeInfo()">
-                    <h2>Title: {{title}}</h2>
-                    <h5>Description: </h5> 
-                    <p>{{desc}}</p>
-                    <h5>Rating: {{rating}}, Calories: {{cals}}</h5>
+                    <h2>{{title}}</h2>
+                    <h5>{{!!desc.trim() ? desc : "Try this delicious " + x.title.trim() + "!"}}</h5> 
+                    <div ng-if="rating == 1">
+                        <span>★</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+                    </div>
+                    <div ng-if="rating == 2">
+                        <span>★</span><span>★</span><span>☆</span><span>☆</span><span>☆</span>
+                    </div>
+                    <div ng-if="rating == 3">
+                        <span>★</span><span>★</span><span>★</span><span>☆</span><span>☆</span>
+                    </div>
+                    <div ng-if="rating == 4">
+                        <span>★</span><span>★</span><span>★</span><span>★</span><span>☆</span>
+                    </div>
+                    <div ng-if="rating == 5">
+                        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                    </div>
                     <h5>Instructions:</h5>
                     <ul>
                         <li ng-repeat="item in instructions">{{item}}</li>
@@ -50,25 +63,25 @@
                         <td> <b>Potassium (g)</b></td>
                         <tr ng-repeat="x in data"> 
                         <td>{{x.ingredient}}</td>
-                        <td> {{x.energy * conv | number:2}} </td>
-                        <td> {{x.fat * conv | number:2}} </td>
-                        <td> {{x.carbohydrates * conv | number:2}} </td>
-                        <td> {{x.sugar * conv | number:2}} </td>
-                        <td> {{x.fiber * conv | number:2}} </td>
-                        <td> {{x.protein * conv | number:2}} </td>
-                        <td> {{x.sodium * conv / 1000 | number:2}} </td>
-                        <td> {{x.potassium * conv / 1000 | number:2}} </td>
+                        <td> {{cals != "N/A" ? (x.energy * conv) / (energy / cals) : x.energy * conv | number:0}} </td>
+                        <td> {{cals != "N/A" ? (x.fat * conv) / (energy / cals) : x.fat * conv | number:0}} </td>
+                        <td> {{cals != "N/A" ? (x.carbohydrates * conv) / (energy / cals) : x.carbohydrates * conv | number:0}} </td>
+                        <td> {{cals != "N/A" ? (x.sugar * conv) / (energy / cals) : x.sugar * conv | number:0}} </td>
+                        <td> {{cals != "N/A" ? (x.fiber * conv) / (energy / cals) : x.fiber * conv | number:0}} </td>
+                        <td> {{cals != "N/A" ? (x.protein * conv) / (energy / cals) : x.protein * conv | number:0}} </td>
+                        <td> {{cals != "N/A" ? (x.sodium * conv / 1000) / (energy / cals) : x.sodium * conv | number:0}} </td>
+                        <td> {{cals != "N/A" ? (x.potassium * conv) / 1000 / (energy / cals) : x.potassium * conv | number:0}} </td>
                         </tr>
                         <tr>
                             <td><b>Total:</b></td>
-                            <td><b>{{energy | number:2}}</b></td>
-                            <td><b>{{fat | number:2}}</b></td>
-                            <td><b>{{carbs | number:2}}</b></td>
-                            <td><b>{{sugar | number:2}}</b></td>
-                            <td><b>{{fiber | number:2}}</b></td>
-                            <td><b>{{protein | number:2}}</b></td>
-                            <td><b>{{sodium | number:2}}</b></td>
-                            <td><b>{{potassium | number:2}}</b></td>
+                            <td><b>{{cals != "N/A" ? energy / (energy / cals) : energy | number:0}}</b></td>
+                            <td><b>{{cals != "N/A" ? fat / (energy / cals) : fat | number:0}}</b></td>
+                            <td><b>{{cals != "N/A" ? carbs / (energy / cals) : carbs | number:0}}</b></td>
+                            <td><b>{{cals != "N/A" ? sugar / (energy / cals) : sugar | number:0}}</b></td>
+                            <td><b>{{cals != "N/A" ? fiber / (energy / cals) : fiber | number:0}}</b></td>
+                            <td><b>{{cals != "N/A" ? protein / (energy / cals) : protein | number:0}}</b></td>
+                            <td><b>{{cals != "N/A" ? sodium / (energy / cals) : sodium | number:0}}</b></td>
+                            <td><b>{{cals != "N/A" ? potassium / (energy / cals) : potassium | number:0}}</b></td>
                         </tr>
                     </table>                    
                 </div>

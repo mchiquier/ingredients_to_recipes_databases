@@ -4,9 +4,10 @@
         <title>Recipe & Nutrition Database</title>
         <script src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.2/angular.js"></script>
         <script src="../js/app.js" type="text/javascript"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
         <link rel="stylesheet"; href="https://unpkg.com/ng-table@2.0.2/bundles/ng-table.min.css">
         <script src="https://unpkg.com/ng-table@2.0.2/bundles/ng-table.min.js"></script>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+        
     </head>
     <body data-spy="scroll" data-target=".scrollspy">
         <header></header>
@@ -21,36 +22,49 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
-                    </button><a href="#" class="navbar-brand">Recipe & Nutrition Database</a></div>
+                    </button><a href="/" class="navbar-brand">Recipe & Nutrition Database</a></div>
             </div>
         </nav>
-         <div class="container">
+        <div class="container">
             <!-- Main component for a primary marketing message or call to action-->
-            <div class="jumbotron">
-                <div ng-controller="myController">
+            <div ng-controller="homeController">
+                <div class="well well-lg">
                     <p>
                         <span aria-hidden="true" class="glyphicon text-primary glyphicon-search"></span> Search for recipes:
                         <input name="word" ng-model="word" value="">
                         <button type="button" ng-click="Submit()" class="button">Search for Matching Recipes</button>
-                        <button type="button" ng-click="Prev()" class="button">Previous</button>
-                        <button type="button" ng-click="Next()" class="button">Next</button>
-
                     </p>
-                    <table border="0" ng-init="allRecipes()" ng-table="vm.tableParams" class="table" show-filter="true" cellpadding="10" cellspacing="1" width="500" align="center"> 
-                        <tr> 
-                        <td> Name </td>
-                        <td> Rating </td>
-                        <td> Total Calories </td>
-                        <td> Description </td>
-                        <tr ng-repeat="x in data"> 
-                        <td><a ng-href="/recipe/{{x.rid}}">{{x.title}}</a></td>
-                        <td> {{x.rating}} </td>
-                        <td> {{x.calories}} </td>
-                        <td> {{x.description}} </td>
-                        </tr>
-                    </table>
                 </div>
-            </div>
-         </div>
+                <div class="container" ng-init="allRecipes()" ng-table="vm.tableParams">
+                    <div class="card col-md-4 border-secondary" ng-repeat="x in data" style="height: 200px; padding: 30px; border: 2px; border-color:darkgray;">  
+                        <div class="card-body">
+                            <h4><a ng-href="/recipe/{{x.rid}}">{{x.title}}</a></h4>
+                            <div ng-if="x.rating == 1">
+                                <span>★</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+                            </div>
+                            <div ng-if="x.rating == 2">
+                                <span>★</span><span>★</span><span>☆</span><span>☆</span><span>☆</span>
+                            </div>
+                            <div ng-if="x.rating == 3">
+                                <span>★</span><span>★</span><span>★</span><span>☆</span><span>☆</span>
+                            </div>
+                            <div ng-if="x.rating == 4">
+                                <span>★</span><span>★</span><span>★</span><span>★</span><span>☆</span>
+                            </div>
+                            <div ng-if="x.rating == 5">
+                                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                            </div>
+                            <small>{{!!x.description.trim() ? x.description : "Try this delicious " + x.title.trim() + "!"}}</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-8 offset-md-3">
+                            <button type="button" ng-click="Prev()" class="button">Previous</button>
+                            <button type="button" ng-click="Next()" class="button">Next</button>
+                    </div>
+                </div>
+            </div>        
+        </div>
     </body>
 </html>

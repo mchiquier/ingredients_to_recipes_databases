@@ -1,6 +1,6 @@
 var app = angular.module('angularjsNodejsTutorial',[]);
 
-app.controller('myController', function($scope, $http, $window) {
+app.controller('homeController', function($scope, $http, $window) {
     var index = 0;
     $scope.Submit = function() {
         if ($scope.word === undefined || $scope.word.length == 0) {
@@ -63,8 +63,8 @@ app.controller('recipeController', function($scope, $http, $window) {
             $scope.rating = data[0].rating != null ? data[0].rating : "Not yet rated";
             var len = data[0].instructions.split('$#').length
             $scope.instructions = data[0].instructions.split('$#').slice(0, len - 1);
-            $scope.cals = data[0].calories != null ? data[0].calories : "Unkown";
-            $scope.desc = data[0].description != "" ? data[0].description : "No available description";
+            $scope.cals = data[0].calories != null ? data[0].calories : "N/A";
+            $scope.desc = data[0].description;
         })
 
         var request1 = $http.get('/recipe/ingredients/' + rid)
