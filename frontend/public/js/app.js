@@ -2,44 +2,139 @@ var app = angular.module('angularjsNodejsTutorial',[]);
 
 app.controller('homeController', function($scope, $http, $window) {
     var index = 0;
+    $scope.selectedName = "All"
+    $scope.options = ["All", "Title", "Rating", "Ingredient", "Rare Ingredient"]
     $scope.Submit = function() {
-        if ($scope.word === undefined || $scope.word.length == 0) {
+        index = 0;
+        if ($scope.selectedName == "Rating") {
+            var request = $http.get('/rating/' + index);
+                request.success(function(data) {
+                    $scope.data = data;
+                });
+                request.error(function(data){
+                    console.log(data);
+                });
+        } else if ($scope.word == undefined || $scope.word.length == 0) {
             $window.location.reload()
         } else {
-            var request = $http.get('/filterword/'+$scope.word);
+            if ($scope.selectedName == 'Title') {
+                var request = $http.get('/filterword/'+$scope.word +"/" + index);
+                request.success(function(data) {
+                    $scope.data = data;
+                });
+                request.error(function(data){
+                    console.log(data);
+                });
+            } else if ($scope.selectedName == "Rare Ingredient") {
+
+            } else if ($scope.selectedName == "Ingredient") {
+                var request = $http.get('/filteringredient/'+$scope.word +"/" + index);
+                request.success(function(data) {
+                    $scope.data = data;
+                });
+                request.error(function(data){
+                    console.log(data);
+                });
+            }
+           
+        }
+       
+    }; 
+    $scope.Next = function() {
+        if ($scope.selectedName == "All") {
+            if (index < 18375) {
+                index += 15
+                var request = $http.get('/fillhome/' + index)
+                request.success(function(data) {
+                    $scope.data = data
+                })
+                request.error(function(data) {
+                    $scope.data = []
+                })
+            } 
+        } else if ($scope.selectedName == 'Title') {
+            index += 15
+            var request = $http.get('/filterword/'+$scope.word +"/" + index);
             request.success(function(data) {
                 $scope.data = data;
             });
             request.error(function(data){
                 console.log(data);
             });
-        }
-       
-    }; 
-    $scope.Next = function() {
-        if (index < 18375) {
+        } else if ($scope.selectedName == "Rating") {
             index += 15
-            var request = $http.get('/fillhome/' + index)
+            var request = $http.get('/rating/' + index);
             request.success(function(data) {
-                $scope.data = data
-            })
-            request.error(function(data) {
-                $scope.data = []
-            })
-        } 
+                $scope.data = data;
+            });
+            request.error(function(data){
+                console.log(data);
+            });
+        } else if ($scope.selectedName == "Ingredient") {
+            index += 15
+            var request = $http.get('/filteringredient/'+$scope.word +"/" + index);
+                request.success(function(data) {
+                    $scope.data = data;
+                });
+                request.error(function(data){
+                    console.log(data);
+                });
+        }
+        
     }
 
     $scope.Prev = function() {
-        if (index > 0) {
+        if ($scope.selectedName == undefined) {
+            if (index > 0) {
+                index -= 15
+                var request = $http.get('/fillhome/' + index)
+                request.success(function(data) {
+                    $scope.data = data
+                })
+                request.error(function(data) {
+                    $scope.data = []
+                })
+            }
+        } else if ($scope.selectedName == "Title") {
+            if (index > 0) {
+                index -= 15
+                var request = $http.get('/filterword/'+$scope.word +"/" + index);
+                request.success(function(data) {
+                    $scope.data = data
+                })
+                request.error(function(data) {
+                    $scope.data = []
+                })
+            }
+        } else if ($scope.selectedName == "Rating") {
             index -= 15
-            var request = $http.get('/fillhome/' + index)
+            var request = $http.get('/rating/' + index);
             request.success(function(data) {
-                $scope.data = data
-            })
-            request.error(function(data) {
-                $scope.data = []
-            })
+                $scope.data = data;
+            });
+            request.error(function(data){
+                console.log(data);
+            });
+        } else if ($scope.selectedName == "Ingredient") {
+            index -= 15
+            var request = $http.get('/filteringredient/'+$scope.word +"/" + index);
+                request.success(function(data) {
+                    $scope.data = data;
+                });
+                request.error(function(data){
+                    console.log(data);
+                });
+        }else if ($scope.selectedName == "Ingredient") {
+            index += 15
+            var request = $http.get('/filteringredient/'+$scope.word +"/" + index);
+                request.success(function(data) {
+                    $scope.data = data;
+                });
+                request.error(function(data){
+                    console.log(data);
+                });
         }
+        
     }
     $scope.allRecipes = function() {
         var request = $http.get('/fillhome/' + index)

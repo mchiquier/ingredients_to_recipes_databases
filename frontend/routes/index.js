@@ -53,19 +53,63 @@ router.get('/fillhome/:start', function(req, res, next) {
   });
 })
 
-router.get('/filterword/:word', function(req,res) {
+router.get('/filterword/:word/:index', function(req,res) {
   
-  var query = 'SELECT * FROM Recipe WHERE title LIKE \'%' + req.params.word + '%\' LIMIT 0' + "," + 15;
+  var query = 'SELECT * FROM Recipe WHERE title LIKE \'%' + req.params.word + '%\' LIMIT ' + req.params.index + "," + 15;
   
   connection.query(query, function(err, rows, fields) {
     if (err) {
       console.log(err)
-      
     }
     else {
       res.json(rows);
     }  
   });
 });
+
+router.get('/rating/:index', function(req,res) {
+  
+  var query = 'SELECT * FROM Recipe ORDER BY rating DESC LIMIT ' + req.params.index + "," + 15;
+  
+  connection.query(query, function(err, rows, fields) {
+    if (err) {
+      console.log(err)
+    }
+    else {
+      res.json(rows);
+    }  
+  });
+});
+
+router.get('/filteringredient/:word/:index', function(req,res) {
+  
+  var query = 'SELECT DISTINCT title, rating, description FROM Recipe NATURAL JOIN Ingredient WHERE ingredient LIKE \'%' + req.params.word + '%\' LIMIT ' + req.params.index + "," + 15;
+  
+  connection.query(query, function(err, rows, fields) {
+    if (err) {
+      console.log(err)
+    }
+    else {
+      res.json(rows);
+    }  
+  });
+});
+
+// router.get('/rareingredient/:word/:index', function(req,res) {
+  
+//   var query = 'SELECT DISTINCT title, rating, description FROM HAS U1 NATURAL JOIN (SELECT iid FROM Has U2)'
+//   Ingredient WHERE ingredient LIKE \'%' + req.params.word + '%\' LIMIT ' + req.params.index + "," + 15;
+  
+//   connection.query(query, function(err, rows, fields) {
+//     if (err) {
+//       console.log(err)
+//     }
+//     else {
+//       res.json(rows);
+//     }  
+//   });
+// });
+
+
 
 module.exports = router;

@@ -32,6 +32,8 @@
                     <p>
                         <span aria-hidden="true" class="glyphicon text-primary glyphicon-search"></span> Search for recipes:
                         <input name="word" ng-model="word" value="">
+                        Search by:
+                        <select ng-model="selectedName" ng-options="x for x in options"></select>
                         <button type="button" ng-click="Submit()" class="button">Search for Matching Recipes</button>
                     </p>
                 </div>
