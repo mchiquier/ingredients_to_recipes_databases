@@ -63,14 +63,14 @@
                         <td> <b>Potassium (g)</b></td>
                         <tr ng-repeat="x in data"> 
                         <td>{{x.ingredient}}</td>
-                        <td> {{cals != "N/A" ? (x.energy * conv) / (energy / cals) : x.energy * conv | number:0}} </td>
-                        <td> {{cals != "N/A" ? (x.fat * conv) / (energy / cals) : x.fat * conv | number:0}} </td>
-                        <td> {{cals != "N/A" ? (x.carbohydrates * conv) / (energy / cals) : x.carbohydrates * conv | number:0}} </td>
-                        <td> {{cals != "N/A" ? (x.sugar * conv) / (energy / cals) : x.sugar * conv | number:0}} </td>
-                        <td> {{cals != "N/A" ? (x.fiber * conv) / (energy / cals) : x.fiber * conv | number:0}} </td>
-                        <td> {{cals != "N/A" ? (x.protein * conv) / (energy / cals) : x.protein * conv | number:0}} </td>
-                        <td> {{cals != "N/A" ? (x.sodium * conv / 1000) / (energy / cals) : x.sodium * conv | number:0}} </td>
-                        <td> {{cals != "N/A" ? (x.potassium * conv) / 1000 / (energy / cals) : x.potassium * conv | number:0}} </td>
+                        <td> {{cals != "N/A" ? (x.energy * x.conversion) / (energy / cals) : x.energy * conv | number:0}} </td>
+                        <td> {{cals != "N/A" ? (x.fat * x.conversion) / (energy / cals) : x.fat * conv | number:0}} </td>
+                        <td> {{cals != "N/A" ? (x.carbohydrates * x.conversion) / (energy / cals) : x.carbohydrates * conv | number:0}} </td>
+                        <td> {{cals != "N/A" ? (x.sugar * x.conversion) / (energy / cals) : x.sugar * conv | number:0}} </td>
+                        <td> {{cals != "N/A" ? (x.fiber * x.conversion) / (energy / cals) : x.fiber * conv | number:0}} </td>
+                        <td> {{cals != "N/A" ? (x.protein * x.conversion) / (energy / cals) : x.protein * conv | number:0}} </td>
+                        <td> {{cals != "N/A" ? (x.sodium * x.conversion / 1000) / (energy / cals) : x.sodium * conv | number:0}} </td>
+                        <td> {{cals != "N/A" ? (x.potassium * x.conversion) / 1000 / (energy / cals) : x.potassium * conv | number:0}} </td>
                         </tr>
                         <tr>
                             <td><b>Total:</b></td>

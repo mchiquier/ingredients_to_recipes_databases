@@ -81,6 +81,20 @@ router.get('/rating/:index', function(req,res) {
   });
 });
 
+router.get('/alpha/:index', function(req,res) {
+  
+  var query = 'SELECT * FROM Recipe WHERE title <> "" ORDER BY title ASC LIMIT ' + req.params.index + "," + 15;
+  
+  connection.query(query, function(err, rows, fields) {
+    if (err) {
+      console.log(err)
+    }
+    else {
+      res.json(rows);
+    }  
+  });
+});
+
 router.get('/filteringredient/:word/:index', function(req,res) {
   
   var query = 'SELECT DISTINCT title, rating, description FROM Recipe NATURAL JOIN Ingredient WHERE ingredient LIKE \'%' + req.params.word + '%\' LIMIT ' + req.params.index + "," + 15;
@@ -95,20 +109,34 @@ router.get('/filteringredient/:word/:index', function(req,res) {
   });
 });
 
-// router.get('/rareingredient/:word/:index', function(req,res) {
+router.get('/recipenutrition/:cat/:type/:amt/:index', function(req,res) {
   
-//   var query = 'SELECT DISTINCT title, rating, description FROM HAS U1 NATURAL JOIN (SELECT iid FROM Has U2)'
-//   Ingredient WHERE ingredient LIKE \'%' + req.params.word + '%\' LIMIT ' + req.params.index + "," + 15;
-  
-//   connection.query(query, function(err, rows, fields) {
-//     if (err) {
-//       console.log(err)
-//     }
-//     else {
-//       res.json(rows);
-//     }  
-//   });
-// });
+  var query = 'CREATE TABLE T1 AS (SELECT rid, SUM(' +req.params.cat +'* conversion / 100) AS protTot, SUM(energy * conversion / 100) AS energyTot FROM Has NATURAL JOIN Nutrient GROUP BY rid)'  
+  connection.query(query, function(err, rows, fields) {
+    if (err) {
+      console.log(err)
+    }
+    else {
+      var comp = ""
+      if (req.params.type == "less") {
+        comp = "<"
+      } else if (req.params.type == "more") {
+        comp = ">"
+      } else {
+        comp = "="
+      }
+      var query1 = 'SELECT * FROM T1 NATURAL JOIN Recipe WHERE protTot / (energyTot / calories) ' + comp + ' ' + req.params.amt + " LIMIT " + req.params.index + ", 15";
+      connection.query(query1, function(err, rows, fields) {
+        if (err) {
+          console.log(err)
+        } else {
+          res.json(rows);
+          connection.query("DROP TABLE T1")
+        }
+      })
+    }  
+  });
+});
 
 
 

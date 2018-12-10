@@ -34,7 +34,11 @@
                         <input name="word" ng-model="word" value="">
                         Search by:
                         <select ng-model="selectedName" ng-options="x for x in options"></select>
+                        <select ng-model="lte" ng-show='shouldDisplay()'ng-options="x for x in gte"></select>
                         <button type="button" ng-click="Submit()" class="button">Search for Matching Recipes</button>
+                        or Sort by:
+                        <select ng-model="selectedSort" ng-options="x for x in sort"></select>
+                        <button type="button" ng-click="SubmitSort()" class="button">Sort Recipes</button>
                     </p>
                 </div>
                 <div class="container" ng-init="allRecipes()" ng-table="vm.tableParams">
