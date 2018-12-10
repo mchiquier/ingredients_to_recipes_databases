@@ -3,7 +3,7 @@
     <head>
         <title>Recipe & Nutrition Database</title>
         <script src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.2/angular.js"></script>
-        <script src="js/app.js" type="text/javascript"></script>
+        <script src="../js/app.js" type="text/javascript"></script>
         <link rel="stylesheet"; href="https://unpkg.com/ng-table@2.0.2/bundles/ng-table.min.css">
         <script src="https://unpkg.com/ng-table@2.0.2/bundles/ng-table.min.js"></script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
@@ -27,9 +27,50 @@
          <div class="container">
             <!-- Main component for a primary marketing message or call to action-->
             <div class="jumbotron">
-                <div ng-controller="recipe">
-                    <p> {{one;""}}
-                    </p>                       
+                <div ng-controller="recipeController" ng-init="recipeInfo()">
+                    <h2>Title: {{title}}</h2>
+                    <h5>Description: </h5> 
+                    <p>{{desc}}</p>
+                    <h5>Rating: {{rating}}, Calories: {{cals}}</h5>
+                    <h5>Instructions:</h5>
+                    <ul>
+                        <li ng-repeat="item in instructions">{{item}}</li>
+                    </ul>
+                    <h5>Ingredients:</h5>
+                    <table border="0" ng-table="vm.tableParams" class="table" show-filter="true" cellpadding="10" cellspacing="1" width="500" align="center"> 
+                        <tr> 
+                        <td> <b>Name</b> </td>
+                        <td> <b>Energy (kcal)</b></td>
+                        <td> <b>Total Fat (g)</b></td>
+                        <td> <b>Carbohydrates (g)</b></td>
+                        <td> <b>Total Sugar (g)</b></td>
+                        <td> <b>Fiber (g)</b></td>
+                        <td> <b>Protein (g)</b></td>
+                        <td> <b>Sodium (g)</b></td>
+                        <td> <b>Potassium (g)</b></td>
+                        <tr ng-repeat="x in data"> 
+                        <td>{{x.ingredient}}</td>
+                        <td> {{x.energy * conv | number:2}} </td>
+                        <td> {{x.fat * conv | number:2}} </td>
+                        <td> {{x.carbohydrates * conv | number:2}} </td>
+                        <td> {{x.sugar * conv | number:2}} </td>
+                        <td> {{x.fiber * conv | number:2}} </td>
+                        <td> {{x.protein * conv | number:2}} </td>
+                        <td> {{x.sodium * conv / 1000 | number:2}} </td>
+                        <td> {{x.potassium * conv / 1000 | number:2}} </td>
+                        </tr>
+                        <tr>
+                            <td><b>Total:</b></td>
+                            <td><b>{{energy | number:2}}</b></td>
+                            <td><b>{{fat | number:2}}</b></td>
+                            <td><b>{{carbs | number:2}}</b></td>
+                            <td><b>{{sugar | number:2}}</b></td>
+                            <td><b>{{fiber | number:2}}</b></td>
+                            <td><b>{{protein | number:2}}</b></td>
+                            <td><b>{{sodium | number:2}}</b></td>
+                            <td><b>{{potassium | number:2}}</b></td>
+                        </tr>
+                    </table>                    
                 </div>
             </div>
          </div>
