@@ -38,25 +38,27 @@
                     </p>
                 </div>
                 <div class="container" ng-init="allRecipes()" ng-table="vm.tableParams">
-                    <div class="card col-md-4 border-secondary" ng-repeat="x in data" style="height: 200px; padding: 30px; border: 2px; border-color:darkgray;">  
-                        <div class="card-body">
-                            <h4><a ng-href="/recipe/{{x.rid}}">{{x.title}}</a></h4>
-                            <div ng-if="x.rating == 1">
-                                <span>★</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+                    <div class="col-md-4" ng-repeat="x in data" style="height: flex; border: 2px; border-color:darkgray;">  
+                        <div class="thumbnail" style="height: 200px; overflow: scroll">
+                            <div class="caption">
+                                    <h4><a ng-href="/recipe/{{x.rid}}">{{x.title}}</a></h4>
+                                    <div ng-if="x.rating == 1">
+                                        <span>★</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
+                                    </div>
+                                    <div ng-if="x.rating == 2">
+                                        <span>★</span><span>★</span><span>☆</span><span>☆</span><span>☆</span>
+                                    </div>
+                                    <div ng-if="x.rating == 3">
+                                        <span>★</span><span>★</span><span>★</span><span>☆</span><span>☆</span>
+                                    </div>
+                                    <div ng-if="x.rating == 4">
+                                        <span>★</span><span>★</span><span>★</span><span>★</span><span>☆</span>
+                                    </div>
+                                    <div ng-if="x.rating == 5">
+                                        <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                                    </div>
+                                    <small>{{!!x.description.trim() ? x.description : "Try this delicious " + x.title.trim() + "!"}}</small>
                             </div>
-                            <div ng-if="x.rating == 2">
-                                <span>★</span><span>★</span><span>☆</span><span>☆</span><span>☆</span>
-                            </div>
-                            <div ng-if="x.rating == 3">
-                                <span>★</span><span>★</span><span>★</span><span>☆</span><span>☆</span>
-                            </div>
-                            <div ng-if="x.rating == 4">
-                                <span>★</span><span>★</span><span>★</span><span>★</span><span>☆</span>
-                            </div>
-                            <div ng-if="x.rating == 5">
-                                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-                            </div>
-                            <small>{{!!x.description.trim() ? x.description : "Try this delicious " + x.title.trim() + "!"}}</small>
                         </div>
                     </div>
                 </div>
