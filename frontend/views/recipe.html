@@ -29,7 +29,7 @@
             <div class="jumbotron">
                 <div ng-controller="recipeController" ng-init="recipeInfo()">
                     <h2>{{title}}</h2>
-                    <h5>{{!!desc.trim() ? desc : "Try this delicious " + title.trim() + "!"}}</h5> 
+                    <h5>{{!!desc.trim() ? desc : "Try this delicious recipe for " + title.trim() + "!"}}</h5> 
                     <div ng-if="rating == 1">
                         <span>★</span><span>☆</span><span>☆</span><span>☆</span><span>☆</span>
                     </div>
@@ -53,14 +53,14 @@
                     <table border="0" ng-table="vm.tableParams" class="table" show-filter="true" cellpadding="10" cellspacing="1" width="500" align="center"> 
                         <tr> 
                         <td> <b>Name</b> </td>
-                        <td> <b>Energy (kcal)</b></td>
-                        <td> <b>Total Fat (g)</b></td>
-                        <td> <b>Carbohydrates (g)</b></td>
-                        <td> <b>Total Sugar (g)</b></td>
-                        <td> <b>Fiber (g)</b></td>
-                        <td> <b>Protein (g)</b></td>
-                        <td> <b>Sodium (g)</b></td>
-                        <td> <b>Potassium (g)</b></td>
+                        <td> <b>Energy(kcal)</b></td>
+                        <td> <b>Fat(g)</b></td>
+                        <td> <b>Carbohydrates(g)</b></td>
+                        <td> <b>Sugar(g)</b></td>
+                        <td> <b>Fiber(g)</b></td>
+                        <td> <b>Protein(g)</b></td>
+                        <td> <b>Sodium(mg)</b></td>
+                        <td> <b>Potassium(mg)</b></td>
                         <tr ng-repeat="x in data"> 
                         <td>{{x.ingredient}}</td>
                         <td> {{cals != "N/A" ? (x.energy * x.conversion) / (energy / cals) : x.energy * conv | number:0}} </td>

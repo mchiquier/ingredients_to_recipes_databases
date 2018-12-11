@@ -5,7 +5,7 @@ app.controller('homeController', function($scope, $http, $window) {
     $scope.selectedName = ""
     $scope.lte = ""
     $scope.gte = [">", "<", "="]
-    $scope.options = ["All", "Title", "Ingredient", "(g) Protein", "(g) Fat", "(g) Carbohydrates", "(g) Sugar", "(g) Fiber"]
+    $scope.options = ["All", "Title", "Ingredient", "Rare Ingredient", "(g) Protein", "(g) Fat", "(g) Carbohydrates", "(g) Sugar", "(g) Fiber"]
     $scope.selectedSort= ""
     $scope.sort = ["Rating", "Alphabetical"]
     $scope.shouldDisplay = function() {
@@ -48,6 +48,15 @@ app.controller('homeController', function($scope, $http, $window) {
                 });
             }  else if ($scope.selectedName == "Ingredient") {
                 var request = $http.get('/filteringredient/'+$scope.word +"/" + index);
+                request.success(function(data) {
+                    $scope.data = data;
+                });
+                request.error(function(data){
+                    console.log(data);
+                });
+            } else if ($scope.selectedName == "Rare Ingredient") {
+                console.log("Rare")
+                var request = $http.get('/filterrare/'+$scope.word +"/" + index);
                 request.success(function(data) {
                     $scope.data = data;
                 });
@@ -288,7 +297,7 @@ app.controller('recipeController', function($scope, $http, $window) {
             $scope.rating = data[0].rating != null ? data[0].rating : "Not yet rated";
             var len = data[0].instructions.split('$#').length
             $scope.instructions = data[0].instructions.split('$#').slice(0, len - 1);
-            $scope.cals = data[0].calories != null ? data[0].calories : "N/A";
+            $scope.cals = data[0].calories != 1 ? data[0].calories : "N/A";
             $scope.desc = data[0].description;
         })
 

@@ -97,7 +97,21 @@ router.get('/alpha/:index', function(req,res) {
 
 router.get('/filteringredient/:word/:index', function(req,res) {
   
-  var query = 'SELECT DISTINCT title, rating, description FROM Recipe NATURAL JOIN Ingredient WHERE ingredient LIKE \'%' + req.params.word + '%\' LIMIT ' + req.params.index + "," + 15;
+  var query = 'SELECT DISTINCT rid, title, rating, description FROM Recipe NATURAL JOIN Ingredient WHERE ingredient LIKE \'%' + req.params.word + '%\' LIMIT ' + req.params.index + "," + 15;
+  
+  connection.query(query, function(err, rows, fields) {
+    if (err) {
+      console.log(err)
+    }
+    else {
+      res.json(rows);
+    }  
+  });
+});
+
+router.get('/filterrare/:word/:index', function(req,res) {
+
+  var query = 'SELECT DISTINCT rid, title, rating, description FROM Recipe NATURAL JOIN (SELECT rid FROM Has h1 JOIN (SELECT iid FROM Has GROUP BY iid HAVING count(iid) < ' + req.params.word + ') h2 ON h1.iid = h2.iid LIMIT ' + req.params.index + "," + 15 + ") h3";
   
   connection.query(query, function(err, rows, fields) {
     if (err) {
