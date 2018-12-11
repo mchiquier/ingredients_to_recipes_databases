@@ -41,6 +41,11 @@
                         <button type="button" ng-click="SubmitSort()" class="button">Sort Recipes</button>
                     </p>
                 </div>
+                <div class="well well-sm">
+                    <p>
+                        Query time: {{queryTime}} ms
+                    </p>
+                </div>
                 <div class="container" ng-init="allRecipes()" ng-table="vm.tableParams">
                     <div class="col-md-4" ng-repeat="x in data" style="height: flex; border: 2px; border-color:darkgray;">  
                         <div class="thumbnail" style="height: 200px; overflow: scroll">

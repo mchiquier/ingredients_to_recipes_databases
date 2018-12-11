@@ -16,17 +16,27 @@ app.controller('homeController', function($scope, $http, $window) {
     $scope.SubmitSort = function() {
         index = 0;
         if ($scope.selectedSort == "Rating") {
+            var date1 = new Date();
+            var t1 = date1.getTime();
             var request = $http.get('/rating/' + index);
                 request.success(function(data) {
                     $scope.data = data;
+                    var date2 = new Date();
+                    var t2 = date2.getTime();
+                    $scope.queryTime = t2-t1;
                 });
                 request.error(function(data){
                     console.log(data);
                 });
         } else if ($scope.selectedSort = "Alphabetical") {
+            var date1 = new Date();
+            var t1 = date1.getTime();
             var request = $http.get('/alpha/' + index);
             request.success(function(data) {
                 $scope.data = data;
+                var date2 = new Date();
+                var t2 = date2.getTime();
+                $scope.queryTime = t2-t1;
             });
             request.error(function(data){
                 console.log(data);
@@ -39,26 +49,43 @@ app.controller('homeController', function($scope, $http, $window) {
             $window.location.reload()
         } else {
             if ($scope.selectedName == 'Title') {
+                var date1 = new Date();
+                var t1 = date1.getTime();
                 var request = $http.get('/filterword/'+$scope.word +"/" + index);
                 request.success(function(data) {
                     $scope.data = data;
+                    var date2 = new Date();
+                    var t2 = date2.getTime();
+                    $scope.queryTime = t2-t1;
                 });
                 request.error(function(data){
                     console.log(data);
                 });
             }  else if ($scope.selectedName == "Ingredient") {
+                var date1 = new Date();
+                var t1 = date1.getTime();
                 var request = $http.get('/filteringredient/'+$scope.word +"/" + index);
                 request.success(function(data) {
                     $scope.data = data;
+                    var date2 = new Date();
+                    var t2 = date2.getTime();
+                    $scope.queryTime = t2-t1;
+                    // console.log(t2 - t1);
+                    $scope.queryTime = t2 - t1;
                 });
                 request.error(function(data){
                     console.log(data);
                 });
             } else if ($scope.selectedName == "Rare Ingredient") {
                 console.log("Rare")
+                var date1 = new Date();
+                var t1 = date1.getTime();
                 var request = $http.get('/filterrare/'+$scope.word +"/" + index);
                 request.success(function(data) {
                     $scope.data = data;
+                    var date2 = new Date();
+                    var t2 = date2.getTime();
+                    $scope.queryTime = t2-t1;
                 });
                 request.error(function(data){
                     console.log(data);
@@ -72,7 +99,7 @@ app.controller('homeController', function($scope, $http, $window) {
                 } else if ($scope.selectedName == "(g) Fat" ) {
                     type = "fat"
                 } else if ($scope.selectedName == "(g) Carbohydrates") {
-                    type = "carbohydrate"
+                    type = "carbohydrates"
                 } else if ($scope.selectedName == "(g) Sugar") {
                     type = "sugar"
                 } else {
@@ -86,9 +113,14 @@ app.controller('homeController', function($scope, $http, $window) {
                 } else {
                     g = "eq"
                 }
+                var date1 = new Date();
+                var t1 = date1.getTime();
                 var request = $http.get('/recipenutrition/' + type + "/"+ g + "/"+$scope.word + "/"+index)
                 request.success(function(data) {
                     $scope.data = data;
+                    var date2 = new Date();
+                    var t2 = date2.getTime();
+                    $scope.queryTime = t2-t1;
                 });
                 request.error(function(data){
                     console.log(data);
@@ -102,9 +134,14 @@ app.controller('homeController', function($scope, $http, $window) {
         if ($scope.selectedName == "All") {
             if (index < 18375) {
                 index += 15
+                var date1 = new Date();
+                var t1 = date1.getTime();
                 var request = $http.get('/fillhome/' + index)
                 request.success(function(data) {
                     $scope.data = data
+                    var date2 = new Date();
+                    var t2 = date2.getTime();
+                    $scope.queryTime = t2-t1;
                 })
                 request.error(function(data) {
                     $scope.data = []
@@ -112,36 +149,56 @@ app.controller('homeController', function($scope, $http, $window) {
             } 
         } else if ($scope.selectedName == 'Title') {
             index += 15
+            var date1 = new Date();
+            var t1 = date1.getTime();
             var request = $http.get('/filterword/'+$scope.word +"/" + index);
             request.success(function(data) {
                 $scope.data = data;
+                var date2 = new Date();
+                var t2 = date2.getTime();
+                $scope.queryTime = t2-t1;
             });
             request.error(function(data){
                 console.log(data);
             });
         } else if ($scope.selectedSort == "Rating") {
             index += 15
+            var date1 = new Date();
+            var t1 = date1.getTime();
             var request = $http.get('/rating/' + index);
             request.success(function(data) {
                 $scope.data = data;
+                var date2 = new Date();
+                var t2 = date2.getTime();
+                $scope.queryTime = t2-t1;
             });
             request.error(function(data){
                 console.log(data);
             });
         } else if ($scope.selectedName == "Ingredient") {
             index += 15
+            var date1 = new Date();
+            var t1 = date1.getTime();
             var request = $http.get('/filteringredient/'+$scope.word +"/" + index);
                 request.success(function(data) {
                     $scope.data = data;
+                    var date2 = new Date();
+                    var t2 = date2.getTime();
+                    $scope.queryTime = t2-t1;
                 });
                 request.error(function(data){
                     console.log(data);
                 });
         } else if ($scope.selectedSort == "Alphabetical") {
             index += 15
+            var date1 = new Date();
+            var t1 = date1.getTime();
             var request = $http.get('/alpha/' + index);
             request.success(function(data) {
                 $scope.data = data;
+                var date2 = new Date();
+                var t2 = date2.getTime();
+                $scope.queryTime = t2-t1;
             });
             request.error(function(data){
                 console.log(data);
@@ -170,9 +227,14 @@ app.controller('homeController', function($scope, $http, $window) {
             } else {
                 g = "eq"
             }
+            var date1 = new Date();
+            var t1 = date1.getTime();
             var request = $http.get('/recipenutrition/' + type + "/"+ g + "/"+$scope.word + "/"+index)
             request.success(function(data) {
                 $scope.data = data;
+                var date2 = new Date();
+                var t2 = date2.getTime();
+                $scope.queryTime = t2-t1;
             });
             request.error(function(data){
                 console.log(data);
@@ -185,9 +247,14 @@ app.controller('homeController', function($scope, $http, $window) {
         if ($scope.selectedName == "All") {
             if (index > 0) {
                 index -= 15
+                var date1 = new Date();
+                var t1 = date1.getTime();
                 var request = $http.get('/fillhome/' + index)
                 request.success(function(data) {
                     $scope.data = data
+                    var date2 = new Date();
+                    var t2 = date2.getTime();
+                    $scope.queryTime = t2-t1;
                 })
                 request.error(function(data) {
                     $scope.data = []
@@ -196,9 +263,14 @@ app.controller('homeController', function($scope, $http, $window) {
         } else if ($scope.selectedName == "Title") {
             if (index > 0) {
                 index -= 15
+                var date1 = new Date();
+                var t1 = date1.getTime();
                 var request = $http.get('/filterword/'+$scope.word +"/" + index);
                 request.success(function(data) {
                     $scope.data = data
+                    var date2 = new Date();
+                    var t2 = date2.getTime();
+                    $scope.queryTime = t2-t1;
                 })
                 request.error(function(data) {
                     $scope.data = []
@@ -207,9 +279,14 @@ app.controller('homeController', function($scope, $http, $window) {
         } else if ($scope.selectedSort == "Rating") {
             if (index > 0) {
                 index -= 15
+                var date1 = new Date();
+                var t1 = date1.getTime();
                 var request = $http.get('/rating/' + index);
                 request.success(function(data) {
                     $scope.data = data;
+                    var date2 = new Date();
+                    var t2 = date2.getTime();
+                    $scope.queryTime = t2-t1;
                 });
                 request.error(function(data){
                     console.log(data);
@@ -219,9 +296,14 @@ app.controller('homeController', function($scope, $http, $window) {
         } else if ($scope.selectedName == "Ingredient") {
             if (index > 0) {
                 index -= 15
+                var date1 = new Date();
+                var t1 = date1.getTime();
                 var request = $http.get('/filteringredient/'+$scope.word +"/" + index);
                     request.success(function(data) {
                         $scope.data = data;
+                        var date2 = new Date();
+                        var t2 = date2.getTime();
+                        $scope.queryTime = t2-t1;
                     });
                     request.error(function(data){
                         console.log(data);
@@ -230,9 +312,14 @@ app.controller('homeController', function($scope, $http, $window) {
         } else if ($scope.selectedSort == "Alphabetical") {
             if (index > 0) {
                 index -= 15
+                var date1 = new Date();
+                var t1 = date1.getTime();
                 var request = $http.get('/alpha/' + index);
                 request.success(function(data) {
                     $scope.data = data;
+                    var date2 = new Date();
+                    var t2 = date2.getTime();
+                    $scope.queryTime = t2-t1;
                 });
                 request.error(function(data){
                     console.log(data);
@@ -264,9 +351,14 @@ app.controller('homeController', function($scope, $http, $window) {
                 } else {
                     g = "eq"
                 }
+                var date1 = new Date();
+                var t1 = date1.getTime();
                 var request = $http.get('/recipenutrition/' + type + "/"+ g + "/"+$scope.word + "/"+index)
                 request.success(function(data) {
                     $scope.data = data;
+                    var date2 = new Date();
+                    var t2 = date2.getTime();
+                    $scope.queryTime = t2-t1;
                 });
                 request.error(function(data){
                     console.log(data);
@@ -276,9 +368,14 @@ app.controller('homeController', function($scope, $http, $window) {
         
     }
     $scope.allRecipes = function() {
+        var date1 = new Date();
+        var t1 = date1.getTime();
         var request = $http.get('/fillhome/' + index)
         request.success(function(data) {
             $scope.data = data
+            var date2 = new Date();
+            var t2 = date2.getTime();
+            $scope.queryTime = t2-t1;
         })
         request.error(function(data) {
             $scope.data = []
@@ -342,5 +439,4 @@ app.controller('recipeController', function($scope, $http, $window) {
             console.log(data)
         })
     }
-    
 });
