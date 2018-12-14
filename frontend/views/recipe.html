@@ -63,25 +63,25 @@
                         <td> <b>Potassium(mg)</b></td>
                         <tr ng-repeat="x in data"> 
                         <td>{{x.ingredient}}</td>
-                        <td> {{cals != "N/A" ? (x.energy * x.conversion) / (energy / cals) : x.energy * conv | number:0}} </td>
-                        <td> {{cals != "N/A" ? (x.fat * x.conversion) / (energy / cals) : x.fat * conv | number:0}} </td>
-                        <td> {{cals != "N/A" ? (x.carbohydrates * x.conversion) / (energy / cals) : x.carbohydrates * conv | number:0}} </td>
-                        <td> {{cals != "N/A" ? (x.sugar * x.conversion) / (energy / cals) : x.sugar * conv | number:0}} </td>
-                        <td> {{cals != "N/A" ? (x.fiber * x.conversion) / (energy / cals) : x.fiber * conv | number:0}} </td>
-                        <td> {{cals != "N/A" ? (x.protein * x.conversion) / (energy / cals) : x.protein * conv | number:0}} </td>
-                        <td> {{cals != "N/A" ? (x.sodium * x.conversion / 1000) / (energy / cals) : x.sodium * conv | number:0}} </td>
-                        <td> {{cals != "N/A" ? (x.potassium * x.conversion) / 1000 / (energy / cals) : x.potassium * conv | number:0}} </td>
+                        <td> {{cals != "N/A" ? (x.energy * x.conversion) / (energy / cals) : x.energy * conv | number:2}} </td>
+                        <td> {{cals != "N/A" ? (x.fat * x.conversion) / (energy / cals) : x.fat * conv | number:2}} </td>
+                        <td> {{cals != "N/A" ? (x.carbohydrates * x.conversion) / (energy / cals) : x.carbohydrates * conv | number:2}} </td>
+                        <td> {{cals != "N/A" ? (x.sugar * x.conversion) / (energy / cals) : x.sugar * conv | number:2}} </td>
+                        <td> {{cals != "N/A" ? (x.fiber * x.conversion) / (energy / cals) : x.fiber * conv | number:2}} </td>
+                        <td> {{cals != "N/A" ? (x.protein * x.conversion) / (energy / cals) : x.protein * conv | number:2}} </td>
+                        <td> {{cals != "N/A" ? (x.sodium * x.conversion / 1000) / (energy / cals) : x.sodium * conv | number:2}} </td>
+                        <td> {{cals != "N/A" ? (x.potassium * x.conversion) / 1000 / (energy / cals) : x.potassium * conv | number:2}} </td>
                         </tr>
                         <tr>
                             <td><b>Total:</b></td>
-                            <td><b>{{cals != "N/A" ? energy / (energy / cals) : energy | number:0}}</b></td>
-                            <td><b>{{cals != "N/A" ? fat / (energy / cals) : fat | number:0}}</b></td>
-                            <td><b>{{cals != "N/A" ? carbs / (energy / cals) : carbs | number:0}}</b></td>
-                            <td><b>{{cals != "N/A" ? sugar / (energy / cals) : sugar | number:0}}</b></td>
-                            <td><b>{{cals != "N/A" ? fiber / (energy / cals) : fiber | number:0}}</b></td>
-                            <td><b>{{cals != "N/A" ? protein / (energy / cals) : protein | number:0}}</b></td>
-                            <td><b>{{cals != "N/A" ? sodium / (energy / cals) : sodium | number:0}}</b></td>
-                            <td><b>{{cals != "N/A" ? potassium / (energy / cals) : potassium | number:0}}</b></td>
+                            <td><b>{{cals != "N/A" ? energy / (energy / cals) : energy | number:2}}</b></td>
+                            <td><b>{{cals != "N/A" ? fat / (energy / cals) : fat | number:2}}</b></td>
+                            <td><b>{{cals != "N/A" ? carbs / (energy / cals) : carbs | number:2}}</b></td>
+                            <td><b>{{cals != "N/A" ? sugar / (energy / cals) : sugar | number:2}}</b></td>
+                            <td><b>{{cals != "N/A" ? fiber / (energy / cals) : fiber | number:2}}</b></td>
+                            <td><b>{{cals != "N/A" ? protein / (energy / cals) : protein | number:2}}</b></td>
+                            <td><b>{{cals != "N/A" ? sodium / (energy / cals) : sodium | number:2}}</b></td>
+                            <td><b>{{cals != "N/A" ? potassium / (energy / cals) : potassium | number:2}}</b></td>
                         </tr>
                     </table>                    
                 </div>

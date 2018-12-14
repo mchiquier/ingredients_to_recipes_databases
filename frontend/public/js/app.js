@@ -417,14 +417,26 @@ app.controller('recipeController', function($scope, $http, $window) {
             var sodium = 0;
             var potassium = 0;
             for (var i = 0; i < data.length; i++) {
-                energy += (data[i].energy * data[i].conversion)
-                fat += (data[i].fat * data[i].conversion)
-                carbs += (data[i].carbohydrates * data[i].conversion)
-                sugar += (data[i].sugar * data[i].conversion)
-                fiber += (data[i].fiber * data[i].conversion)
-                protein += (data[i].protein * data[i].conversion)
-                sodium += (data[i].sodium * data[i].conversion / 1000)
-                potassium += (data[i].potassium * data[i].conversion / 1000) 
+                if($scope.cals == 'N/A') {
+                    energy += (data[i].energy * conv)
+                    fat += (data[i].fat * conv)
+                    carbs += (data[i].carbohydrates * conv)
+                    sugar += (data[i].sugar * conv)
+                    fiber += (data[i].fiber * conv)
+                    protein += (data[i].protein * conv)
+                    sodium += (data[i].sodium * conv / 1000)
+                    potassium += (data[i].potassium * conv / 1000)
+                } else {
+                    energy += (data[i].energy * data[i].conversion)
+                    fat += (data[i].fat * data[i].conversion)
+                    carbs += (data[i].carbohydrates * data[i].conversion)
+                    sugar += (data[i].sugar * data[i].conversion)
+                    fiber += (data[i].fiber * data[i].conversion)
+                    protein += (data[i].protein * data[i].conversion)
+                    sodium += (data[i].sodium * data[i].conversion / 1000)
+                    potassium += (data[i].potassium * data[i].conversion / 1000) 
+                }
+                
             }
             $scope.energy = energy
             $scope.fat = fat
@@ -434,9 +446,7 @@ app.controller('recipeController', function($scope, $http, $window) {
             $scope.protein = protein
             $scope.sodium = sodium
             $scope.potassium = potassium
-            console.log(energy)
-            console.log(protein)
-            console.log(data)
+           
         })
     }
 });
